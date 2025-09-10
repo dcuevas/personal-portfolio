@@ -1,8 +1,4 @@
-import Link from 'next/link';
-
-import { buttonVariants } from '@/components/button';
 import { Icons } from '@/components/icons';
-import { cn } from '@/lib/utils';
 
 export const links = [
   {
@@ -56,53 +52,54 @@ export const projectsData = [
 
 export const experiencesData = [
   {
-    title: 'Web developer intern',
-    company: 'WEB-BOX, Tarnobrzeg PL',
+    title: 'Head of Engineering',
+    company: 'Expenti, Málaga, Spain',
     description:
-      'During this internship, I focused on two key areas: creating Wordpress plugins and managing website content, plugins, and settings.',
-    period: '2023',
-    technologies: ['HTML', 'CSS', 'JavaScript', 'Wordpress'],
+      'As Head of Engineering, I led and mentored several development teams, including other engineering managers. My primary focus was driving adoption of best practices to deliver high-quality software. Championing the adoption of AI tools to enhance both efficiency and software quality on the games platform.',
+    period: '2024-2025',
+    technologies: [
+      'Continuous improvement',
+      'Lean',
+      'Stakeholder alignment',
+      'Kubernetes',
+    ],
   },
   {
-    title: 'Frontend developer & UI designer',
-    company: 'Freelancing, remote',
+    title: 'Engineering Manager',
+    company: 'The Workshop, Málaga, Spain',
     description:
-      'As a freelancer, I specialized in graphic design using Figma and website development using Next.js with Sanity CMS. I undertook projects independently, from design conceptualization to final implementation, ensuring client satisfaction.',
-    period: '2023 - 2024',
-    technologies: ['Next.js', 'TypeScript', 'Sanity CMS', 'Tailwind'],
+      'For over six years, I bring cross-functional teams through the full development lifecycle for sports betting and casino platforms. Fostering a culture centered on team autonomy, servant leadership, and continuous improvement through lean and agile methodologies.',
+    period: '2018 - 2024',
+    technologies: [
+      'Iterative Development',
+      'Servant Leadership',
+      'CD/CI',
+      'Good Coding Practices',
+    ],
   },
   {
-    title: 'Frontend developer intern',
-    company: 'Chop-chop, remote',
+    title: 'Frontend Developer',
+    company: 'The Workshop, Málaga, Spain',
     description:
-      'During my internship at Chop-Chop, I collaborated with an experienced IT team, focusing on tasks in Next.js. This experience provided valuable insights into teamwork and advanced my proficiency in Next.js.',
-    period: '2024',
-    technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
+      'Architected and developed modern frontend solutions focused on robustness, scalability, and optimized user experience, while advocating for best practices such as automated testing and continuous delivery.',
+    period: '2014-2018',
+    technologies: ['Typescript', 'Angular', 'NPM', 'TDD'],
   },
   {
-    title: 'Frontend developer & UI designer',
-    company: 'GeoScan, remote',
-    description: (
-      <>
-        At GeoScan, I collaborate with frontend, backend, and GIS specialists to
-        build{' '}
-        <Link
-          className={cn(
-            buttonVariants({ variant: 'link' }),
-            'm-0 h-fit p-0 text-base'
-          )}
-          href="https://geoscan-app.com"
-          target="_blank"
-        >
-          geoscan-app.com
-        </Link>{' '}
-        — a platform for generating real estate reports. I’m responsible for
-        developing and maintaining the frontend, as well as designing UI/UX to
-        ensure a clear and intuitive user experience.
-      </>
-    ),
-    period: '2024 - present',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind', 'Supabase', 'Leaflet'],
+    title: 'Java Software Developer',
+    company: 'The Workshop, Málaga, Spain',
+    description:
+      'Designed and implemented backend systems emphasizing high availability, scalability, and real-time data, collaborating effectively within agile cross-functional teams.',
+    period: '2014-2018',
+    technologies: ['Java', 'Spring', 'Agile', 'TDD'],
+  },
+  {
+    title: 'Senior Programmer / Programmer,',
+    company: 'The Workshop, Málaga, Spain',
+    description:
+      'Delivered enterprise-grade software solutions by integrating diverse technology stacks, ensuring seamless system interoperability and alignment with client business needs.',
+    period: '2006-2010',
+    technologies: ['Java', 'J2EE', 'Javascript'],
   },
 ] as const;
 

@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   Briefcase,
+  BriefcaseBusiness,
   Building2,
   Calendar,
   ChevronDown,
@@ -18,6 +19,7 @@ export const Icons = {
   sun: Sun,
   moon: Moon,
   arrowRight: ArrowRight,
+  briefcaseBusiness: BriefcaseBusiness,
   download: Download,
   preview: ExternalLink,
   githubOutline: Github,

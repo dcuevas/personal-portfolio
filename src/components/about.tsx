@@ -21,20 +21,19 @@ export const About = () => {
       <SectionHeading heading="About Me" />
       <div className="-mt-5 max-w-2xl text-center leading-7">
         <p className="mb-4">
-          I&apos;m Michał Skolak, I&apos;m a front-end developer from Poland.
-          I&apos;ve been learning programming for over 3 years. After I started
-          high school, I decided to pursue my passion for programming. My
-          favorite part of programming is the problem-solving aspect. I love the
-          feeling of finally figuring out a solution to a problem. I&apos;ve had
-          the opportunity to work on several exciting projects during my
-          learning journey, ranging from personal projects to collaborative
-          ventures. My core stack is React, Next.js, TypeScript, and Tailwind
-          CSS. I am also familiar with Nest.js and Prisma. I&apos;m always
-          looking to learn new technologies.
+          I&apos;m Darío Cuevas, Engineer Leader from Spain. With over 15 years
+          in software development, I have progressed from a hands-on developer
+          to a strategic engineering manager, shaping high-quality digital
+          products throughout my journey. As a dedicated servant leader, my core
+          philosophy is to empower teams through autonomy, fostering a culture
+          of ownership and outcome-driven development. I focus on breaking down
+          complex work, cultivating a platform mindset, and aligning technology
+          with business goals to build high-performing, self-sufficient teams
+          that consistently deliver value.
         </p>
         <p>
-          I&apos;m open to Job opportunities where I can contribute, learn and
-          grow. If you have a good opportunity that matches my skills and
+          I&apos;m always looking for new opportunities where I can contribute,
+          learn and grow. If you have a good opportunity that matches my skills
           experience then don&apos;t hesitate to contact me.
         </p>
       </div>

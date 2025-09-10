@@ -26,7 +26,7 @@ export const Experience = () => {
         {experiencesData.map(
           ({ title, description, company, period, technologies }) => (
             <div
-              key={company}
+              key={title}
               className="not-last:pb-12 relative pl-8 [&:not(:last-child)]:pb-10"
             >
               <div className="bg-muted absolute left-0 top-2.5 h-full w-[2px] group-first:top-6 group-first:h-[calc(100%-24px)]">

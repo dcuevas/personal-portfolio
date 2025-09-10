@@ -32,7 +32,7 @@ export const Intro = () => {
             <span className="absolute flex size-full animate-ping rounded-full bg-green-400 opacity-75"></span>
             <span className="relative flex size-2 rounded-full bg-green-400"></span>
           </span>
-          <span className="font-mono text-sm">Available for work!</span>
+          <span className="font-mono text-sm">Let´s meet!</span>
         </Link>
       </motion.div>
       <motion.h1
@@ -40,11 +40,11 @@ export const Intro = () => {
         animate={{ opacity: 1, y: 0 }}
         className="font-heading max-w-3xl text-4xl font-extrabold md:text-5xl"
       >
-        Hi I&#39;m a{' '}
+        Hi I&#39;m an{' '}
         <span className="bg-gradient-to-r from-rose-700 to-pink-600 bg-clip-text text-transparent">
-          Frontend
+          Engineering Leader
         </span>{' '}
-        developer creating modern web apps.
+        building systems that don’t break.
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 100 }}
@@ -54,8 +54,9 @@ export const Intro = () => {
         }}
         className="text-muted-foreground max-w-xl"
       >
-        A frontend developer based in the Poland. I&#39;m passionate about
-        building modern web applications using Next.js, React, and Tailwind CSS.
+        Engineering Leader with 15 years of making complex things simple, teams
+        autonomous, and turning big ideas into deliverable work that actually
+        matters. Most leaders optimize for features. I optimize for flow.
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 100 }}
@@ -71,13 +72,13 @@ export const Intro = () => {
           </Link>
         </Button>
         <Button variant="outline" size="lg" className="hidden sm:flex" asChild>
-          <a href="/michalskolak.pdf" download>
-            Download CV <Icons.download className="ml-2 size-4" />
+          <a href="#experience">
+            Experience <Icons.briefcaseBusiness className="ml-2 size-4" />
           </a>
         </Button>
         <Button variant="outline" size="icon" asChild>
           <Link
-            href="https://www.linkedin.com/in/micha%C5%82-skolak-06905524b"
+            href="https://www.linkedin.com/in/dariocuevas/"
             aria-label="Linkedin"
             target="_blank"
           >
@@ -86,7 +87,7 @@ export const Intro = () => {
         </Button>
         <Button variant="outline" size="icon" asChild>
           <Link
-            href="https://github.com/Skolaczk"
+            href="https://github.com/dcuevas"
             aria-label="Github"
             target="_blank"
           >

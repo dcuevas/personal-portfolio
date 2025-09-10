@@ -10,8 +10,8 @@ const resend = new Resend(env.RESEND_API_KEY);
 export const sendEmailAction = async ({ email, message }: TFormSchema) => {
   try {
     await resend.emails.send({
-      from: 'Contact Form <onboarding@resend.dev>',
-      to: 'skolakmichal1@gmail.com',
+      from: 'Dario Cuevas Site <onboarding@resend.dev>',
+      to: 'dario.cuevas@gmail.com',
       subject: 'Message from contact form',
       replyTo: email,
       text: `email: ${email} \nmessage: ${message}`,
