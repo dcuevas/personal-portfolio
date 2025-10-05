@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 
 import { PropsWithChildren } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 
 import { ActiveSectionProvider } from '@/components/active-section-provider';
@@ -39,6 +40,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
             <Toaster position="bottom-left" />
           </ActiveSectionProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
