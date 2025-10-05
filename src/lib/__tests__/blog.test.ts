@@ -8,7 +8,7 @@ import {
 } from '../blog';
 
 // Mock contentlayer data
-vi.mock('contentlayer/generated', () => ({
+vi.mock('contentlayer2/generated', () => ({
   allBlogs: [
     {
       slug: 'post-1',

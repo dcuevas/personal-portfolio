@@ -1,4 +1,4 @@
-import { allBlogs } from 'contentlayer/generated';
+import { allBlogs } from 'contentlayer2/generated';
 
 export function getBlogPosts() {
   return allBlogs

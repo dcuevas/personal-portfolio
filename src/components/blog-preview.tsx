@@ -1,6 +1,6 @@
 'use client';
 
-import { Blog } from 'contentlayer/generated';
+import { Blog } from 'contentlayer2/generated';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import Link from 'next/link';

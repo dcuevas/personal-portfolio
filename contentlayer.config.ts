@@ -2,7 +2,7 @@ import {
   ComputedFields,
   defineDocumentType,
   makeSource,
-} from 'contentlayer/source-files';
+} from 'contentlayer2/source-files';
 import readingTime from 'reading-time';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrettyCode from 'rehype-pretty-code';
@@ -75,11 +75,13 @@ export default makeSource({
   documentTypes: [Blog],
   disableImportAliasWarning: true,
   mdx: {
-    remarkPlugins: [remarkGfm],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    remarkPlugins: [remarkGfm as any],
     rehypePlugins: [
       rehypeSlug,
       [
-        rehypePrettyCode,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        rehypePrettyCode as any,
         {
           theme: 'github-dark',
           keepBackground: false,
