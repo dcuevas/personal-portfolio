@@ -1,6 +1,7 @@
 import { Icons } from '@/components/icons';
+import { env } from '@/env.mjs';
 
-export const links = [
+const allLinks = [
   {
     name: 'Home',
     hash: '#home',
@@ -18,10 +19,18 @@ export const links = [
     hash: '#principles',
   },
   {
+    name: 'Blog',
+    hash: '#blog',
+  },
+  {
     name: 'Contact',
     hash: '#contact',
   },
 ] as const;
+
+export const links = env.NEXT_PUBLIC_ENABLE_BLOG
+  ? allLinks
+  : allLinks.filter((link) => link.name !== 'Blog');
 
 export const experiencesData = [
   {

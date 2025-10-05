@@ -67,11 +67,11 @@ export function OperatingPrinciples() {
   return (
     <section
       aria-label="My Operating Principles"
-      className="space-y-6"
+      className="mb-14 space-y-6 sm:mb-20"
       id="principles"
     >
       <div className="text-center">
-        <h2 className="text-xl font-bold tracking-tight">
+        <h2 className="text-3xl font-bold tracking-tight">
           My Operating Principles
         </h2>
         <p className="text-muted-foreground mt-1 text-sm">
