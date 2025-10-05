@@ -39,7 +39,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile --legacy-peer-deps
+        run: pnpm install --frozen-lockfile --no-strict-peer-dependencies
 
       - name: Run linter
         run: pnpm run lint
