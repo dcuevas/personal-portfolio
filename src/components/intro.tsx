@@ -14,7 +14,7 @@ export const Intro = () => {
     <section
       ref={ref}
       id="home"
-      className="my-10 flex scroll-mt-96 flex-col items-center gap-5 text-center sm:mt-28"
+      className="my-10 flex scroll-mt-96 flex-col items-center gap-5 text-center sm:mt-20"
     >
       <motion.div
         initial={{ opacity: 0, scale: 0 }}

@@ -39,7 +39,7 @@ export const Contact = () => {
     <motion.section
       ref={ref}
       id="contact"
-      className="my-10 w-full scroll-mt-28 md:mb-20"
+      className="mb-10 mt-5 w-full scroll-mt-28 md:mb-20"
       initial={{
         opacity: 0,
       }}
