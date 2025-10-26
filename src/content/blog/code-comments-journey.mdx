@@ -1,130 +1,170 @@
 ---
-title: 'MCP: The USB-C Moment for APIs [And Why You Should Care]'
+title: 'Why I Changed My Mind About Code Comments'
 publishedAt: '2025-10-26'
-summary: 'The Model Context Protocol (MCP), an open standard released by Anthropic in November 2024, is fundamentally changing the painful reality of dealing with APIs'
-image: '/images/APIvsMCP.png'
-tags: ['API', 'MCP', 'AI', 'Integration']
+updatedAt: '2025-10-26'
+summary: 'From "Comments Are Failures" to "Comments Are Essential": Clean Code by Robert C. Martin vs A Philosophy of Software Deisn by John Ousterhout'
+image: 'https://www.dariocuevas.com//images/comments.png'
+imageAlt: "IDE with code. No comment vs commented code. Two hands shaking."
+tags: ['code comments', 'clean code', 'AI']
 published: true
+slug: 'code-comments-journey'
+canonical: "https://www.dariocuevas.com/blog/code-comments-journey"
+description: 'From "Comments Are Failures" to "Comments Are Essential": Clean Code by Robert C. Martin vs A Philosophy of Software Deisn by John Ousterhout'
+author: "Darío Cuevas"
+language: "en"
+---
+
+# Why I Changed My Mind About Code Comments
 
 ---
 
-# MCP: The USB-C Moment for APIs [And Why You Should Care]
+## 🎬 The Awakening — When Your Own Code Bites Back
+
+I still remember the day in 2011 when I found a piece of particularly nasty code in our codebase. I checked `git blame`. It was me. A year earlier.
+
+This moment crystallized everything I'd learned since leaving consultancy in 2010. In consulting, you write code and move on. Someone else's problem. But in a product company? That code is *yours*. You'll maintain it, extend it, and curse it at 2 AM when production goes down.
+
+That's when a senior engineer handed me Clean Code by Robert C. Martin. I devoured it. The book promised redemption through better naming, formatting, testing, and refactoring.
+
+At its heart was a radical idea: **comments are failures**. If your code needs comments, you've failed to make it self-documenting. 
+
+I became a fanatic.
 
 ---
 
-## 🔌 What is MCP? The Universal Connector for AI
+## 🧹 The Clean Code Years — When Comments Became the Enemy
 
-Remember the chaos of the early 2010s? Every device had its own charger. iPhones had their 30-pin connector, Android phones used micro-USB, laptops needed proprietary adapters, and your desk looked like a cable graveyard. Then USB-C arrived, and suddenly, one cable could charge your phone, laptop, tablet, and headphones. It was a game-changer—not because it was more powerful, but because it was **universal**.
+From 2010 to 2014, I practiced what Robert Martin preached with religious fervor: **kill the comments**.
 
-That's exactly what's happening in software right now with the **Model Context Protocol (MCP)**.
+Instead of writing `// Calculate the total price including tax and discount`, I'd extract a function called `calculateFinalPriceWithTaxAndDiscount()`. The function name became the comment.
 
-Announced by Anthropic in November 2024 and quickly adopted by OpenAI, Google DeepMind, and major development platforms like Zed, Replit, and Sourcegraph, MCP is an open standard that defines how AI systems connect to data sources and tools. Think of it as the USB-C port for AI applications—a standardized way to plug AI models into databases, business tools, content repositories, and development environments.
+When I needed to explain a complex algorithm, I'd split it into smaller, well-named functions: `validateUserInput()`, `processPaymentTransaction()`, `sendConfirmationEmail()`. Each name was documentation embedded in code.
 
-Before MCP, every new data source required its own custom connector. Want to connect your AI assistant to Google Drive? Build a connector. Need Slack integration? Build another one. GitHub? Another custom implementation. This created what Anthropic calls the **"N×M problem"**: N data sources times M AI applications equals a maintenance nightmare.
+I had a killer argument against comments: **they get outdated**. Comments that lie are worse than no comments. Let the code be the single source of truth.
 
-MCP changes this equation. Instead of building separate connectors for each combination, developers now build against a single, universal protocol. The AI takes care of how to connect—you just define what to connect to.
+My code became cleaner. Functions smaller. Variable names ridiculously long but descriptive. I felt like a craftsman who'd mastered the technique.
 
-![MCP Architecture Diagram](/images/mcp-simple-diagram.avif)
-*Source: Anthropic*
-
----
-
-## 🔧 The API Problem Nobody Talks About
-
-If you've worked with APIs long enough, you know the pain: **every change is a potential disaster**.
-
-Here's the reality of traditional API development:
-
-**Breaking Changes Are Inevitable—and Expensive**  
-When you modify an API endpoint—changing a parameter from optional to required, updating a response format, or removing a field—you risk breaking every client application that depends on it. One small change can cascade into customer complaints, emergency patches, and late-night war rooms. Companies like Salesforce support up to 21 different API versions simultaneously (yes, versions going back to 2014) just to avoid breaking their customers' integrations.
-
-**Backward Compatibility Is a Full-Time Job**  
-Maintaining backward compatibility means testing every change against every supported version. It means writing extensive migration guides, setting up automated regression tests, and dedicating engineering resources to support legacy versions that should have been deprecated years ago. As one API expert put it: *"APIs are forever"*—once you release an interface, it becomes a dependency that's nearly impossible to eliminate without disrupting users.
-
-**The Version Management Treadmill**  
-To manage changes, teams implement versioning strategies—URI versioning (`/v1/users`, `/v2/users`), header versioning, semantic versioning (major.minor.patch). Each approach has trade-offs, but all share one problem: **every version multiplies your maintenance burden**. More versions mean more testing, more documentation, more infrastructure costs, and more complexity for both API providers and consumers.
-
-**The Hidden Costs**  
-Consider the tangible costs when APIs break or change:
-- Engineering hours diverted from new features to emergency fixes
-- Customer support teams overwhelmed with integration-related tickets  
-- Sales teams dealing with frustrated customers instead of closing deals
-- Partner ecosystems damaged when strategic integrations break
-- Technical debt accumulating from quick workarounds
-
-The fundamental issue? **Tight coupling between services**. When Service A calls Service B's API, any change to B's contract potentially requires changes to A's code. This creates fragility and slows down innovation.
+But there was a nagging feeling I couldn't shake...
 
 ---
 
-## 💡 How MCP Flips the Script: Abstraction Over Implementation
+## 💡 The Philosophy Shift — When Everything Changed
 
-Here's where MCP fundamentally changes the game—and why it matters for your platform architecture.
+Then I read *A Philosophy of Software Design* by John Ousterhout. My world turned upside down again.
 
-**The Abstraction Advantage**  
-Traditional APIs are **implementation contracts**: "Call this URL with these exact parameters in this specific format, and I'll return data in this precise structure." Change any part of that contract, and you break the integration.
+Ousterhout directly challenged Clean Code: "Comments do not represent failures. The information they provide is quite different from that provided by code, and this information can't be represented in code today."
 
-MCP operates at a different level—it's a **capability contract**: "I can provide user data, execute searches, and perform actions." The protocol handles the translation between what the AI wants and how your service provides it. When you update your service's internals, the MCP server adapts the interface automatically, and the AI on the other side continues working without code changes.
+Wait. What?
 
-**Real-World Example: Two Services, Zero Breaking Changes**  
-Imagine you have two services in your platform:
-- **Service A**: A recommendation engine powered by AI
-- **Service B**: A customer database with purchase history
+The key insight: **Comments are fundamental to abstractions**. Without comments, you can't hide complexity. If users must read the code to use a method, then there is no abstraction—all complexity is exposed.
 
-Traditionally, Service A makes API calls to Service B: `GET /api/v1/customers/{id}/purchases`. If Service B's team decides to restructure their data model—say, splitting purchases into subscriptions and one-time transactions—they'd need to:
-1. Create a new API version (`/api/v2/`)
-2. Update documentation
-3. Notify Service A's team
-4. Wait for Service A to update their code
-5. Coordinate deployment
-6. Maintain both versions during migration
+Here's a real example of my evolution:
 
-**With MCP:** Service B exposes an MCP server that describes its capabilities: "I can retrieve customer purchase history." The AI in Service A connects via MCP. When Service B restructures their database, they update their MCP server implementation—but the interface remains the same. Service A's AI continues requesting "customer purchase history," and the MCP protocol handles the translation. **No code changes. No coordination. No breaking changes.**
+**Before (Clean Code approach):**
+```javascript
+function calculateTimeRemaining(startDate, endDate, excludeWeekends, holidays) {
+  // Function name tells WHAT, but not WHY
+}
+```
 
-**The AI Does the Heavy Lifting**  
-This is the crucial insight: AI models are incredibly good at working with varying data structures and adapting to different formats. By letting AI handle the "how" of connection through a standardized protocol, MCP removes the brittleness of traditional APIs while preserving—and even enhancing—functionality.
+**After (Philosophy of Software Design approach):**
+```javascript
+/**
+ * Calculates business days remaining for project deadline.
+ * 
+ * We use business days because our SLA commitments to customers
+ * are based on business days. Weekend exclusion handles our 24/5
+ * support model. Holidays vary by region.
+ */
+function calculateTimeRemaining(startDate, endDate, excludeWeekends, holidays) {
+  // Implementation...
+}
+```
 
-**Early Success Stories**  
-Companies are already seeing the benefits:
-- **Block** (formerly Square) has integrated MCP into their systems, citing it as foundational to making AI innovation "accessible, transparent, and rooted in collaboration"
-- **Development platforms** like Zed, Replit, Codeium, and Sourcegraph are using MCP to give AI coding assistants real-time access to project context without building custom connectors for each tool
-- **Apollo** and other blockchain firms are leveraging MCP to connect AI to complex data systems
+The function name tells you *what*. The comment tells you *why*, the business context, and the assumptions. **Both are essential.**
 
----
+Ousterhout demolished Martin's solution of extracting functions with longer names: "This results in names like isLeastRelevantMultipleOfNextLargerPrimeFactor. Even with all these words, names like this are cryptic and provide less information than a well-written comment."
 
-## 🚀 The Bigger Picture: What This Means for Platform Architecture
+I suddenly saw all those ridiculously long function names for what they were: a workaround to avoid writing one clear sentence.
 
-If MCP is the USB-C moment for APIs, we're standing at the edge of something bigger than just easier integrations.
+**The synthesis I reached:** Robert Martin was right about 80% of things. Clean code, expressive naming, small functions—all essential. But comments aren't failures. *Bad* comments are failures.
 
-**The End of Integration Tax**  
-Today, every new service integration carries an "integration tax"—the time, cost, and risk of building and maintaining custom connectors. MCP dramatically reduces this tax. In a world where services speak a common protocol and AI handles adaptation, the cost of adding new capabilities to your platform drops significantly.
-
-**Microservices Without the Maintenance Nightmare**  
-Microservices promised flexibility and independent deployability. But in practice, service-to-service communication through REST APIs created tight coupling and versioning hell. MCP offers a path to **truly independent services**: each service exposes its capabilities through MCP, and AI-powered clients consume those capabilities without brittle contracts.
-
-**The Questions Worth Asking**  
-As you think about your platform's future, consider:
-- What if your services could evolve independently without coordination overhead?
-- What if adding a new data source to your AI features took hours instead of weeks?
-- What if backward compatibility became the default instead of a constant struggle?
-
-**A Word of Caution**  
-MCP is young. Security researchers have already identified concerns around prompt injection, tool permissions, and trust verification. Like any protocol in its early days, there will be growing pains. But the direction is clear: **standardized, AI-mediated connections** are likely the future of how software components talk to each other.
-
-**The Bottom Line**  
-MCP won't replace traditional APIs overnight—nor should it. But for AI-powered applications, agent-based workflows, and platforms seeking to reduce integration complexity, MCP represents a fundamental shift: from rigid contracts to adaptive capabilities, from tight coupling to flexible orchestration.
-
-The USB-C revolution didn't happen because one cable was slightly better—it happened because everyone agreed on a standard. MCP might just be that agreement for the AI era.
-
-**What's your biggest API pain point?** Could a protocol like MCP solve it? The conversation is just beginning.
+**My current practice:**
+- **Short, internal functions**: Minimal comments. The code speaks.
+- **Complex functions**: Comments explain the *why* and business context.
+- **Public APIs**: Comments are *mandatory*. They define the abstraction.
+- **Tricky workarounds**: Comments are *essential*. They save hours of confusion.
 
 ---
 
-## 📚 Further Reading
+## 🤖 The AI Era — Why Comments Matter More Than Ever
 
-- [Anthropic's MCP Documentation](https://docs.anthropic.com/en/docs/agents-and-tools/mcp)
-- [MCP GitHub Repository](https://github.com/modelcontextprotocol)
-- [API Versioning Challenges Explained](https://www.xmatters.com/blog/best-practices-for-api-versioning)
-- [Awesome MCP Servers](https://github.com/punkpeye/awesome-mcp-servers)
-- [MCP Example Servers](https://modelcontextprotocol.io/examples)
+Now we're in 2025, and there's a new player: AI coding assistants.
+
+I use Claude Code with a `claude.md` file in my projects. Here's what I discovered: **good comments make AI dramatically more effective**.
+
+GitHub Copilot, Claude, and other AI assistants use comments as crucial context. They parse not just syntax but interpret comments to understand intent and generate better suggestions.
+
+This changes everything. We're not just writing comments for humans—we're writing them for AI assistants that help us code faster.
+
+And let's remember: **code is read far more than it's written**.
+
+Robert Martin himself said it: "The ratio of time spent reading versus writing is well over 10 to 1. We are constantly reading old code as part of the effort to write new code."
+
+In my 15+ years, this rings absolutely true. I spend my days understanding code before changing it, fixing bugs, reviewing code, investigating incidents, and onboarding team members. We're not creating greenfield projects daily—we're maintaining, extending, and evolving existing systems. All of that requires *reading* code.
+
+If code is read 10x more than it's written, making code easier to read has a 10x multiplier on productivity. **Good comments make code dramatically easier to read.**
+
+### 📝 What Good Comments Look Like
+
+• **Explain the "Why," Not the "What"** — Code shows what. Comments explain why, what business logic it serves, and what assumptions it makes.
+
+• **Capture What Code Cannot Express** — Document context, constraints, trade-offs, and decisions invisible in code.
+
+• **Stay Close to the Code** — Comments next to what they describe stay updated. Avoid distant documentation.
+
+• **Don't Duplicate the Code** — If your comment restates the obvious (`// increment counter`), delete it.
+
+• **Document Edge Cases and Gotchas** — Weird workarounds? Input assumptions? Threading constraints? Comment them!
+
+• **Provide Examples** — One input/output example beats paragraphs of abstract description.
+
+• **Keep Them Updated** — Change code, update comments. Make it part of code review.
+
+• **Write During Development** — Don't leave for later. Write when context is fresh.
+
+• **Use Standard Formats** — JSDoc, Javadoc, Python docstrings—use your language's conventions.
 
 ---
+
+### **The Bottom Line**
+
+After 15 years and two philosophical earthquakes:
+
+**Clean Code is right**: Write expressive code with clear names and good structure.
+
+**Philosophy of Software Design is also right**: Comments capture essential information code alone cannot express.
+
+**In the AI era**: Comments aren't just for humans. They're context for AI assistants. No excuse for skipping them.
+
+The best code isn't comment-free. The best code uses comments wisely—where they add value, explain context, and make code dramatically easier to understand.
+
+Robert Martin and John Ousterhout aren't enemies. They're two perspectives on the same problem.
+
+**Write clean code. Use good names. Keep functions small. And write clear, valuable comments that explain what the code cannot.**
+
+Your future self—and your AI coding assistant—will thank you.
+
+---
+
+**What's your take? Have you evolved your philosophy over the years?**
+
+---
+
+### 📚 Further Reading
+
+- [Clean Code](https://www.goodreads.com/book/show/3735293-clean-code) by Robert C. Martin
+- [A Philosophy of Software Design](https://web.stanford.edu/~ouster/cgi-bin/book.php) by John Ousterhout  
+- ["Code is read more than written"](https://bayrhammer-klaus.medium.com/you-spend-much-more-time-reading-code-than-writing-code-bc953376fe19) - The 10:1 ratio
+- [GitHub Copilot Documentation](https://github.com/features/copilot) - How AI uses comments
+- [Stack Overflow's Comment Guide](https://stackoverflow.blog/2021/12/23/best-practices-for-writing-code-comments/)
