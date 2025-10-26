@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { BlogHeader } from '@/components/blog-header';
 import { MDXContent } from '@/components/mdx-content';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { env } from '@/env.mjs';
 import { getBlogPost, getBlogPosts } from '@/lib/blog';
 import { cn } from '@/lib/utils';
 
@@ -34,15 +35,23 @@ export async function generateMetadata({
     };
   }
 
+  const canonicalUrl = env.SITE_URL
+    ? `${env.SITE_URL}/blog/${slug}`
+    : undefined;
+
   return {
     title: post.title,
     description: post.summary,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: post.title,
       description: post.summary,
       type: 'article',
       publishedTime: post.publishedAt,
       authors: ['Dario Cuevas'],
+      url: canonicalUrl,
       images: post.image
         ? [post.image]
         : [`/og?title=${encodeURIComponent(post.title)}`],
