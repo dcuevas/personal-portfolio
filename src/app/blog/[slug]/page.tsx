@@ -72,10 +72,10 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
         <BlogHeader />
         <div className="w-full max-w-3xl px-4 py-24 sm:py-32">
           <Link
-            href="/#blog"
+            href="/blog"
             className="text-muted-foreground hover:text-foreground mb-8 inline-flex items-center text-sm transition-colors"
           >
-            ← Back to blog
+            ← Back to articles
           </Link>
 
           <article>
