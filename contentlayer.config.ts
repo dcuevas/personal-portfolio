@@ -67,6 +67,24 @@ export const Blog = defineDocumentType(() => ({
       type: 'boolean',
       default: true,
     },
+    updatedAt: {
+      type: 'string',
+    },
+    imageAlt: {
+      type: 'string',
+    },
+    canonical: {
+      type: 'string',
+    },
+    description: {
+      type: 'string',
+    },
+    author: {
+      type: 'string',
+    },
+    language: {
+      type: 'string',
+    },
   },
   computedFields,
 }));

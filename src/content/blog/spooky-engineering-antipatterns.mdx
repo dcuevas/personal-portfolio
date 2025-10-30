@@ -1,0 +1,152 @@
+---
+title: '🎃 10 Spooky Engineering Antipatterns That Haunt Your Codebase (And How to Exorcise Them)'
+publishedAt: '2025-10-30'
+updatedAt: '2025-10-30'
+summary: 'When fear and deadlines strike, we all fall into the same traps. Discover 10 engineering antipatterns that haunt codebases—from "tests are missing" to horizontal slicing nightmares—and learn how to banish them for good.'
+image: "https://www.dariocuevas.com/images/spookyantipatterns.png"
+imageAlt: "Ghoshs with laptops around a tree"
+tags: ['cleancode', 'antipatterns', 'bestpractices', 'softwareengineering']
+published: true
+slug: 'spooky-engineering-antipatterns'
+canonical: "https://www.dariocuevas.com/blog/mcp-usb-c-moment-for-apis"
+description: "Discover 10 common software engineering antipatterns that plague development teams under pressure. This guide covers technical horrors (TDD failures, Boy Scout Rule violations, over-engineering) and process nightmares (poor operational readiness, optimism bias, horizontal slicing). Learn practical solutions to improve code quality, team collaboration, and system reliability."
+author: "Darío Cuevas"
+language: "en"
+---
+
+# **🎃 10 Spooky Engineering Antipatterns That Haunt Your Codebase (And How to Exorcise Them)**
+
+## **👻 When Fear Takes Control**
+
+Let me be honest with you from the start—this isn't going to be one of those perfectly academic blog posts filled with textbook definitions and pristine case studies. This is real talk about real engineering nightmares I've lived through, and I'm willing to bet you've experienced many of them too.
+
+Here's the terrifying truth: when deadlines loom and fear creeps in, we all commit similar antipatterns. It doesn't matter if you're a junior engineer or a seasoned tech lead—**fear blocks our rational thinking**. That looming sprint deadline, that critical production release, that executive breathing down your neck—they all trigger the same response: shortcuts, compromises, and decisions we know we'll regret later.
+
+I've seen it countless times in standups, retrospectives, and 2 AM Slack messages. We become predictable in our panic. We skip the tests "just this once." We hard-code that value "temporarily." We tell ourselves we'll fix it later, knowing deep down that "later" rarely comes.
+
+This Halloween, I want to shine a light on these ghosts haunting our codebases and our processes. Some of these antipatterns are well-documented in books like [Clean Code](https://www.oreilly.com/library/view/clean-code-a/9780136083238/) by Robert C. Martin. Others are more orthodox observations from the trenches—patterns I've noticed when fear takes the wheel and rational engineering takes the backseat.
+
+So grab your garlic and wooden stakes. Let's hunt some monsters.
+
+---
+
+## **🕷️ Technical & Coding Horrors**
+
+### **1. The Ghost of Bad Comments (or Worse—No Comments)**
+
+You know what's scarier than no comments? Misleading comments that lie. Comments outdated three refactorings ago that nobody bothered to update.
+
+Good comments explain the "why," not the "what." Your code should be self-explanatory. Comments should provide context, explain business logic, or warn about gotchas—not describe what the code does.
+
+**The exorcism:** Make code readable without comments, but use them strategically to explain intent, constraints, and non-obvious decisions.
+
+### **2. "I Finished—Only Tests Are Missing"**
+
+If tests are missing, **you haven't finished**. Period.
+
+TDD isn't just about having tests—it's about using them to think through the behaviors you're adding. Writing tests first forces you to consider the API, edge cases, and failure modes. Writing tests at the end? You're retrofitting tests onto code that wasn't designed to be testable.
+
+**The exorcism:** Write tests as you develop, not after. Make "tests passing" part of your definition of done.
+
+### **3. The Boy Scout Rule? Never Heard of Her**
+
+"Always leave the campground cleaner than you found it." But here's what actually happens: we see ugly code, add our own ugly code on top, and move on. "This isn't my problem" or "I don't have time."
+
+The Boy Scout Rule isn't about heroic refactorings. It's about small, incremental improvements—renaming a confusing variable, extracting a complex method, fixing a minor bug.
+
+**The exorcism:** Make it a team habit. Every PR should leave the codebase slightly better—even if it's just one variable rename.
+
+### **4. Over-Engineering: The Curse of Complexity**
+
+"We need to make this flexible for future requirements!" Famous last words before building a framework when a simple function would do.
+
+Over-engineering bloats the codebase and introduces unnecessary risk. The best code I've written is code I later deleted because the feature didn't need code at all—just a config change.
+
+**The exorcism:** Always ask: "What's the simplest thing that could possibly work?" Build what you need today. Refactor tomorrow if requirements actually change.
+
+### **5. "The AI Generated This, So It's Probably Fine"**
+
+AI coding assistants are incredible. I use them daily. But "vibe coding"—pasting AI-generated code without understanding it—is how amateur programmers work, not professionals.
+
+Treat AI as a pair programmer, not a replacement. Read every line it generates. Often, AI gives you something that works but isn't optimal for your context.
+
+**The exorcism:** Always review, understand, and validate AI-generated code. You're responsible for every line that ships, regardless of who (or what) wrote it.
+
+---
+
+## **🧟 Behavioral, Process & Collaboration Nightmares**
+
+### **1. Forgetting Operational Readiness: The 2 AM Phone Call Horror**
+
+You ship the feature. Everyone celebrates. Then at 2 AM, production breaks, and nobody knows what to do.
+
+Where's the observability? Where are the monitoring dashboards, the alerts, the runbooks documenting how to handle incidents? When you ship without proper observability, you're saying: "Someone else will deal with it when it breaks."
+
+**The exorcism:** Before production deployment, ensure monitoring is set up, alerting is configured, dashboards provide visibility, and runbooks are prepared. Make operational readiness a prerequisite for "done."
+
+### **2. Optimism Bias: "If That Happens, Something's Very Wrong"**
+
+"Well, if the network fails at that point, we have bigger problems."
+
+Really? Networks fail. Services become unresponsive. External dependencies time out. These aren't edge cases—they're Tuesday.
+
+**The exorcism:** Design for failure. Add timeouts. Implement circuit breakers. Handle errors gracefully. Test your failure modes.
+
+### **3. Implementation Over Outcome: The Cache Trap**
+
+The team spends two weeks debating how to implement a caching layer. Which library? Redis or Memcached? 
+
+Meanwhile, nobody asks: "Do we actually need a cache, or could we solve the performance problem with database indexes?"
+
+**The exorcism:** Always start with the outcome. What problem are we solving? What's the simplest solution? Stay solution-agnostic until you've explored the problem space.
+
+### **4. Horizontal Slicing: The Integration Nightmare**
+
+You break down a feature "logically": one story for frontend, one for backend, one for database. 
+
+Wrong. This creates dependencies, delays integration, and prevents early validation. The frontend team waits for the API. The backend discovers a fundamental database issue—after the frontend is "done." Now you rebuild both.
+
+**The exorcism:** Break stories vertically. Deliver thin slices across all layers. Get feedback early. Iterate.
+
+### **5. Code Reviews as Gatekeeping, Not Coaching**
+
+Code reviews are one of the best opportunities to level up your team. Yet how often are they just rubber stamps or nitpicking sessions?
+
+When a senior engineer reviews a junior's code, they have a choice: approve quickly and move on, or invest time in teaching better patterns. The second option takes longer, but it compounds over time.
+
+**The exorcism:** Treat every code review as a coaching opportunity. Ask questions instead of making demands. Explain the reasoning behind suggestions. Build a culture where learning is more valued than being right.
+
+---
+
+## **💀 The Exorcism Guide—Banishing These Ghosts**
+
+We've identified the monsters. Now let's refelct on how to banish them from your codebase and your process.
+
+### **Key Takeaways**
+
+Fear and deadlines push us toward these antipatterns. But **awareness is the first step to breaking the cycle**. When you feel that pressure mounting, when shortcuts start looking attractive—pause. Ask: "Am I about to create technical debt I'll regret?"
+
+These antipatterns aren't character flaws. They're natural human responses to stress. The difference between struggling teams and thriving teams isn't that thriving teams never feel the pressure—it's that they've built habits and guardrails to prevent fear-driven decisions.
+
+Remember: if we all follow simple rules like the Boy Scout Rule, we would see the end of the relentless deterioration of our software systems.
+
+### **Share Your Horror Stories**
+
+Now it's your turn. What's the scariest antipattern you've encountered? Which ghost haunts your codebase? Have you seen any of these patterns in your own work?
+
+Please share your engineering horror stories. Sometimes the best exorcism is knowing we're not alone in fighting these demons.
+
+**Happy Halloween! May your code be bug-free and your deployments haunt-free.** 🎃👻
+
+---
+
+**Sources & Further Reading:**
+- [My previous article on MCP and code comments](https://www.dariocuevas.com/blog/mcp-usb-c-moment-for-apis)
+- *Clean Code* and other works by Robert C. Martin
+- *The Software Engineer's Guidebook* by Gergely Orosz
+- *User Story Mapping* by Jeff Patton
+- *Escaping the Build Trap* by Melissa Perri
+- [Software Testing Anti-patterns](https://blog.codepipes.com/testing/software-testing-antipatterns.html)
+- [The Boy Scout Rule](https://deviq.com/principles/boy-scout-rule/)
+- [Vertical Slicing Guide](https://www.humanizingwork.com/the-humanizing-work-guide-to-splitting-user-stories/)
+- [Production Readiness Checklist](https://www.cortex.io/post/how-to-create-a-great-production-readiness-checklist)
