@@ -8,7 +8,7 @@ imageAlt: "Ghoshs with laptops around a tree"
 tags: ['cleancode', 'antipatterns', 'bestpractices', 'softwareengineering']
 published: true
 slug: 'spooky-engineering-antipatterns'
-canonical: "https://www.dariocuevas.com/blog/mcp-usb-c-moment-for-apis"
+canonical: "https://www.dariocuevas.com/blog/spooky-engineering-antipatterns"
 description: "Discover 10 common software engineering antipatterns that plague development teams under pressure. This guide covers technical horrors (TDD failures, Boy Scout Rule violations, over-engineering) and process nightmares (poor operational readiness, optimism bias, horizontal slicing). Learn practical solutions to improve code quality, team collaboration, and system reliability."
 author: "Darío Cuevas"
 language: "en"
@@ -22,7 +22,7 @@ Let me be honest with you from the start—this isn't going to be one of those p
 
 Here's the terrifying truth: when deadlines loom and fear creeps in, we all commit similar antipatterns. It doesn't matter if you're a junior engineer or a seasoned tech lead—**fear blocks our rational thinking**. That looming sprint deadline, that critical production release, that executive breathing down your neck—they all trigger the same response: shortcuts, compromises, and decisions we know we'll regret later.
 
-I've seen it countless times in standups, retrospectives, and 2 AM Slack messages. We become predictable in our panic. We skip the tests "just this once." We hard-code that value "temporarily." We tell ourselves we'll fix it later, knowing deep down that "later" rarely comes.
+I've seen it countless times in standups, retrospectives, and 2 AM Teams messages. We become predictable in our panic. We skip the tests "just this once." We hard-code that value "temporarily." We tell ourselves we'll fix it later, knowing deep down that "later" rarely comes.
 
 This Halloween, I want to shine a light on these ghosts haunting our codebases and our processes. Some of these antipatterns are well-documented in books like [Clean Code](https://www.oreilly.com/library/view/clean-code-a/9780136083238/) by Robert C. Martin. Others are more orthodox observations from the trenches—patterns I've noticed when fear takes the wheel and rational engineering takes the backseat.
 
@@ -80,7 +80,7 @@ Treat AI as a pair programmer, not a replacement. Read every line it generates. 
 
 You ship the feature. Everyone celebrates. Then at 2 AM, production breaks, and nobody knows what to do.
 
-Where's the observability? Where are the monitoring dashboards, the alerts, the runbooks documenting how to handle incidents? When you ship without proper observability, you're saying: "Someone else will deal with it when it breaks."
+Where's the observability? Where are the monitoring dashboards, the alerts, the runbooks or SOPs documenting how to handle incidents? When you ship without proper observability, you're saying: "Someone else will deal with it when it breaks."
 
 **The exorcism:** Before production deployment, ensure monitoring is set up, alerting is configured, dashboards provide visibility, and runbooks are prepared. Make operational readiness a prerequisite for "done."
 
@@ -120,7 +120,7 @@ When a senior engineer reviews a junior's code, they have a choice: approve quic
 
 ## **💀 The Exorcism Guide—Banishing These Ghosts**
 
-We've identified the monsters. Now let's refelct on how to banish them from your codebase and your process.
+We've identified the monsters. Now let's reflect on how to banish them from your codebase and your process.
 
 ### **Key Takeaways**
 
