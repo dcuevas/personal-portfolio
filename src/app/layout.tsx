@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 
 import { PropsWithChildren } from 'react';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 
 import { ActiveSectionProvider } from '@/components/active-section-provider';
@@ -41,6 +42,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
           </ActiveSectionProvider>
         </ThemeProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
