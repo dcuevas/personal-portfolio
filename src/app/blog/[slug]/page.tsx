@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 
 import { BlogHeader } from '@/components/blog-header';
 import { MDXContent } from '@/components/mdx-content';
+import { Remark42 } from '@/components/remark42';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { env } from '@/env.mjs';
 import { getBlogPost, getBlogPosts } from '@/lib/blog';
@@ -144,6 +145,14 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
               }}
             />
           </article>
+
+          {/* Comments section */}
+          <Remark42
+            host="https://comments.dariocuevas.com"
+            siteId="dariocuevas"
+            url={`https://dariocuevas.com/blog/${slug}`}
+            pageTitle={post.title}
+          />
 
           <footer className="text-muted-foreground mt-16 border-t pt-8 text-center text-sm">
             © 2025 Darío Cuevas. All rights reserved.

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "contentlayer2 dev & next dev",
+    "dev:https": "contentlayer2 dev & next dev --experimental-https",
     "build": "contentlayer2 build && next build",
     "start": "next start",
     "preview": "contentlayer2 build && next build && next start",
