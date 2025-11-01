@@ -149,7 +149,7 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
           {/* Comments section */}
           <Remark42
             host="https://comments.dariocuevas.com"
-            siteId="dariocuevas"
+            siteId="dariocuevas.com"
             url={`https://dariocuevas.com/blog/${slug}`}
             pageTitle={post.title}
           />
