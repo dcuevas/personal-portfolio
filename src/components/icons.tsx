@@ -15,6 +15,7 @@ import {
   Linkedin,
   LucideProps,
   Moon,
+  Rss,
   Star,
   Sun,
 } from 'lucide-react';
@@ -33,6 +34,7 @@ export const Icons = {
   star: Star,
   calendar: Calendar,
   building: Building2,
+  rss: Rss,
   socialhub: (props: LucideProps) => (
     <svg
       width="64"

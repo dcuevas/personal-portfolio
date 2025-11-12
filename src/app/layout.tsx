@@ -29,6 +29,11 @@ export const metadata: Metadata = {
   verification: {
     google: siteConfig.googleSiteVerificationId,
   },
+  alternates: {
+    types: {
+      'application/rss+xml': `${siteConfig.url}/blog/feed.xml`,
+    },
+  },
 };
 
 const RootLayout = ({ children }: PropsWithChildren) => {
