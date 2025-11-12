@@ -95,7 +95,7 @@ export const Intro = () => {
           </Link>
         </Button>
         <Button variant="outline" size="icon" asChild>
-          <Link href="/blog/feed.xml" aria-label="RSS Feed" target="_blank">
+          <Link href="/blog/feed" aria-label="RSS Feed" target="_blank">
             <Icons.rss className="size-5" />
           </Link>
         </Button>

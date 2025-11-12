@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     types: {
-      'application/rss+xml': `${siteConfig.url}/blog/feed.xml`,
+      'application/rss+xml': `${siteConfig.url}/blog/feed`,
     },
   },
 };

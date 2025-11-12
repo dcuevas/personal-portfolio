@@ -15,9 +15,7 @@ export async function GET() {
     favicon: `${siteConfig.url}/favicon.ico`,
     copyright: `All rights reserved ${new Date().getFullYear()}, Dario Cuevas`,
     feedLinks: {
-      rss2: `${siteConfig.url}/blog/feed.xml`,
-      json: `${siteConfig.url}/blog/feed.json`,
-      atom: `${siteConfig.url}/blog/atom.xml`,
+      rss2: `${siteConfig.url}/blog/feed`,
     },
     author: {
       name: 'Dario Cuevas',
