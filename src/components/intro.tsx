@@ -26,7 +26,7 @@ export const Intro = () => {
       >
         <Link
           href="#contact"
-          className="flex items-center gap-3 rounded border px-3 py-1"
+          className="border-primary/30 bg-primary/5 text-primary/80 hover:border-primary/50 hover:bg-primary/10 flex items-center gap-3 rounded border px-3 py-1 transition-colors"
         >
           <span className="relative flex size-2">
             <span className="absolute flex size-full animate-ping rounded-full bg-green-400 opacity-75"></span>
@@ -38,10 +38,10 @@ export const Intro = () => {
       <motion.h1
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
-        className="font-heading max-w-3xl text-4xl font-extrabold md:text-5xl"
+        className="font-display max-w-3xl text-4xl font-extrabold md:text-5xl"
       >
         Hi I&#39;m an{' '}
-        <span className="bg-gradient-to-r from-rose-700 to-pink-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-teal-500 to-teal-700 bg-clip-text text-transparent dark:from-teal-300 dark:to-teal-500">
           Engineering Leader
         </span>{' '}
         building systems that don’t break.

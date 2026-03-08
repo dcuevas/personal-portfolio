@@ -34,8 +34,8 @@ const BlogPage = () => {
                 key={post.slug}
                 href={`/blog/${post.slug}`}
                 className={cn(
-                  'border-border bg-card hover:border-primary group block overflow-hidden rounded-lg border transition-all',
-                  'hover:shadow-lg'
+                  'border-border bg-card group block overflow-hidden rounded-lg border transition-all duration-300',
+                  'hover:border-primary/60 hover:shadow-primary/5 hover:shadow-lg'
                 )}
               >
                 <div className="flex flex-col gap-0 md:flex-row">
@@ -45,7 +45,7 @@ const BlogPage = () => {
                       <img
                         src={post.image}
                         alt={post.title}
-                        className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
                   )}
@@ -73,7 +73,7 @@ const BlogPage = () => {
                         {post.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="bg-secondary text-secondary-foreground rounded-full px-3 py-1 text-xs"
+                            className="bg-primary/10 text-primary rounded-full px-3 py-1 text-xs"
                           >
                             {tag}
                           </span>

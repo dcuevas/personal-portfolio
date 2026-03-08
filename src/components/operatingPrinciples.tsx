@@ -2,6 +2,7 @@
 'use client';
 
 import * as React from 'react';
+import { motion } from 'framer-motion';
 import { Layers3, Map, Sparkles, Users } from 'lucide-react';
 
 type Card = {
@@ -10,6 +11,7 @@ type Card = {
   icon: React.ComponentType<{ className?: string }>;
   color: string;
   bgColor: string;
+  borderTopColor: string;
 };
 
 const ITEMS: Card[] = [
@@ -18,6 +20,7 @@ const ITEMS: Card[] = [
     icon: Users,
     color: 'text-amber-400',
     bgColor: 'bg-amber-500/10',
+    borderTopColor: 'border-t-amber-400/50',
     points: [
       'Lead by getting out of the way',
       'Scale by doing less, not more',
@@ -29,6 +32,7 @@ const ITEMS: Card[] = [
     icon: Map,
     color: 'text-emerald-400',
     bgColor: 'bg-emerald-500/10',
+    borderTopColor: 'border-t-emerald-400/50',
     points: [
       "User stories aren't requirements—they're conversations",
       "The best breakdown reveals what you don't know",
@@ -40,6 +44,7 @@ const ITEMS: Card[] = [
     icon: Layers3,
     color: 'text-blue-400',
     bgColor: 'bg-blue-500/10',
+    borderTopColor: 'border-t-blue-400/50',
     points: [
       'Build for 10x load, not 2x',
       'Make failure cheap and recovery fast',
@@ -55,6 +60,7 @@ const ITEMS: Card[] = [
     icon: Sparkles,
     color: 'text-violet-400',
     bgColor: 'bg-violet-500/10',
+    borderTopColor: 'border-t-violet-400/50',
     points: [
       'Anyone can use AI; few use it well.',
       "AI augments thinking, doesn't replace it",
@@ -63,11 +69,24 @@ const ITEMS: Card[] = [
   },
 ];
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
+
 export function OperatingPrinciples() {
   return (
     <section
       aria-label="My Operating Principles"
-      className="mb-14 space-y-6 sm:mb-20"
+      className="mb-14 scroll-mt-28 space-y-6 sm:mb-20"
       id="principles"
     >
       <div className="text-center">
@@ -83,15 +102,22 @@ export function OperatingPrinciples() {
         {ITEMS.map((card, index) => {
           const IconComponent = card.icon;
           return (
-            <article
+            <motion.article
               key={index}
-              className="border-border bg-card hover:bg-accent/50 rounded-xl border p-6 transition-colors"
+              custom={index}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+              className={`border-border bg-card hover:bg-accent/50 rounded-xl border border-t-2 p-6 transition-all duration-300 ${card.borderTopColor}`}
             >
               <div className="mb-4 flex items-center gap-3">
                 <div className={`rounded-lg p-2 ${card.bgColor}`}>
                   <IconComponent className={`size-5 ${card.color}`} />
                 </div>
-                <h3 className="text-muted-foreground text-sm font-semibold uppercase tracking-wide">
+                <h3
+                  className={`text-sm font-semibold uppercase tracking-wide ${card.color}`}
+                >
                   {card.title}
                 </h3>
               </div>
@@ -111,7 +137,7 @@ export function OperatingPrinciples() {
                   </li>
                 ))}
               </ul>
-            </article>
+            </motion.article>
           );
         })}
       </div>

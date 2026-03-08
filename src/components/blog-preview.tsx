@@ -17,13 +17,15 @@ type BlogPreviewProps = {
 const fadeInAnimationVariants = {
   initial: {
     opacity: 0,
-    y: 100,
+    y: 40,
   },
   animate: (index: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.05 * index,
+      delay: 0.08 * index,
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
     },
   }),
 };
@@ -57,8 +59,8 @@ export const BlogPreview = ({ posts }: BlogPreviewProps) => {
             <Link
               href={`/blog/${post.slug}`}
               className={cn(
-                'border-border bg-card hover:border-primary group block h-full overflow-hidden rounded-lg border text-left transition-all',
-                'hover:shadow-lg'
+                'border-border bg-card group block h-full overflow-hidden rounded-lg border text-left transition-all duration-300',
+                'hover:border-primary/60 hover:shadow-primary/5 hover:shadow-lg'
               )}
             >
               <div className="flex h-full flex-col">
@@ -68,7 +70,7 @@ export const BlogPreview = ({ posts }: BlogPreviewProps) => {
                     <img
                       src={post.image}
                       alt={post.title}
-                      className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                 )}
@@ -85,7 +87,7 @@ export const BlogPreview = ({ posts }: BlogPreviewProps) => {
                     </span>
                   </div>
 
-                  <h3 className="group-hover:text-primary line-clamp-2 text-xl font-bold transition-colors">
+                  <h3 className="group-hover:text-primary line-clamp-2 text-left text-base font-bold transition-colors duration-200">
                     {post.title}
                   </h3>
 
@@ -98,7 +100,7 @@ export const BlogPreview = ({ posts }: BlogPreviewProps) => {
                       {post.tags.slice(0, 2).map((tag) => (
                         <span
                           key={tag}
-                          className="bg-secondary text-secondary-foreground rounded-full px-2 py-1 text-xs"
+                          className="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs"
                         >
                           {tag}
                         </span>
@@ -112,7 +114,7 @@ export const BlogPreview = ({ posts }: BlogPreviewProps) => {
         ))}
       </div>
 
-      <div className="mt-8 flex gap-4">
+      <div className="mt-8 flex justify-center">
         <Link
           href="/blog"
           className="hover:bg-primary/90 bg-primary text-primary-foreground inline-flex items-center rounded-full px-6 py-3 font-medium transition-colors"

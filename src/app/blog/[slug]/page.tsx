@@ -83,14 +83,16 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
         <div className="w-full max-w-3xl px-4 py-24 sm:py-32">
           <Link
             href="/blog"
-            className="text-muted-foreground hover:text-foreground mb-8 inline-flex items-center text-sm transition-colors"
+            className="text-muted-foreground hover:text-primary mb-8 inline-flex items-center gap-1 text-sm transition-colors"
           >
             ← Back to articles
           </Link>
 
           <article>
             <header className="mb-8">
-              <h1 className="mb-4 text-4xl font-bold">{post.title}</h1>
+              <h1 className="font-display mb-4 text-4xl font-bold">
+                {post.title}
+              </h1>
 
               <div className="text-muted-foreground flex flex-wrap items-center gap-4 text-sm">
                 <time dateTime={post.publishedAt}>
@@ -105,7 +107,7 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="bg-secondary text-secondary-foreground rounded-full px-3 py-1 text-xs"
+                      className="bg-primary/10 text-primary rounded-full px-3 py-1 text-xs"
                     >
                       {tag}
                     </span>
