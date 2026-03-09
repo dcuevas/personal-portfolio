@@ -1,6 +1,6 @@
 // Add technology icons from react-icons
 import { FaAws, FaJava } from 'react-icons/fa6';
-import { SiGrafana, SiKubernetes } from 'react-icons/si'; // Simple Icons family
+import { SiApachekafka, SiGrafana, SiKubernetes } from 'react-icons/si'; // Simple Icons family
 import {
   ArrowLeft,
   ArrowRight,
@@ -115,4 +115,5 @@ export const Icons = {
   kubernetes: SiKubernetes,
   aws: FaAws,
   grafana: SiGrafana,
+  kafka: SiApachekafka,
 };

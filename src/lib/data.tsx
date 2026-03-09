@@ -94,4 +94,5 @@ export const skillsData = [
   { icon: <Icons.typescript className="size-12" /> },
   { icon: <Icons.docker className="size-12" /> },
   { icon: <Icons.grafana className="size-12" /> },
+  { icon: <Icons.kafka className="size-12" /> },
 ] as const;
