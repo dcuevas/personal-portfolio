@@ -18,25 +18,6 @@ const computedFields: ComputedFields = {
     type: 'string',
     resolve: (doc) => readingTime(doc.body.raw).text,
   },
-  structuredData: {
-    type: 'json',
-    resolve: (doc) => ({
-      '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      headline: doc.title,
-      datePublished: doc.publishedAt,
-      dateModified: doc.publishedAt,
-      description: doc.summary,
-      image: doc.image
-        ? `https://dariocuevas.com${doc.image}`
-        : `https://dariocuevas.com/og?title=${encodeURIComponent(doc.title)}`,
-      url: `https://dariocuevas.com/blog/${doc._raw.flattenedPath.replace('blog/', '')}`,
-      author: {
-        '@type': 'Person',
-        name: 'Dario Cuevas',
-      },
-    }),
-  },
 };
 
 export const Blog = defineDocumentType(() => ({

@@ -9,6 +9,7 @@ import { Remark42 } from '@/components/remark42';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { env } from '@/env.mjs';
 import { getBlogPost, getBlogPosts } from '@/lib/blog';
+import { siteConfig } from '@/lib/site-config';
 import { cn } from '@/lib/utils';
 
 type BlogPostPageProps = {
@@ -36,9 +37,7 @@ export async function generateMetadata({
     };
   }
 
-  const canonicalUrl = env.SITE_URL
-    ? `${env.SITE_URL}/blog/${slug}`
-    : undefined;
+  const canonicalUrl = env.SITE_URL ? absoluteUrl(`/blog/${slug}`) : undefined;
 
   return {
     title: post.title,
@@ -68,6 +67,10 @@ export async function generateMetadata({
   };
 }
 
+// Build absolute URLs from SITE_URL so a domain change only requires updating the env var.
+const absoluteUrl = (path: string) =>
+  path.startsWith('http') ? path : new URL(path, siteConfig.url).toString();
+
 const BlogPostPage = async ({ params }: BlogPostPageProps) => {
   const { slug } = await params;
   const post = getBlogPost(slug);
@@ -75,6 +78,24 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
   if (!post) {
     notFound();
   }
+
+  const postUrl = absoluteUrl(`/blog/${slug}`);
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt || post.publishedAt,
+    description: post.summary,
+    image: absoluteUrl(
+      post.image || `/og?title=${encodeURIComponent(post.title)}`
+    ),
+    url: postUrl,
+    author: {
+      '@type': 'Person',
+      name: 'Dario Cuevas',
+    },
+  };
 
   return (
     <>
@@ -143,16 +164,16 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{
-                __html: JSON.stringify(post.structuredData),
+                __html: JSON.stringify(structuredData),
               }}
             />
           </article>
 
           {/* Comments section */}
           <Remark42
-            host="https://comments.dariocuevas.com"
-            siteId="dariocuevas.com"
-            url={`https://dariocuevas.com/blog/${slug}`}
+            host={env.NEXT_PUBLIC_REMARK42_HOST}
+            siteId={env.NEXT_PUBLIC_REMARK42_SITE_ID}
+            url={postUrl}
             pageTitle={post.title}
           />
 
